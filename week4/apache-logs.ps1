@@ -1,9 +1,10 @@
-﻿cls
-$notfounds = Get-Content C:\xampp\apache\logs\access.log | Select-String -Pattern ' 404 '
+﻿function apache-logs($page, $code, $browser){
+
+$records = Get-Content C:\xampp\apache\logs\access.log | Select-String -Pattern $page, $code, $browser
 
 $regex = [regex] "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
 
-$ipunorg = $regex.Matches($notfounds)
+$ipunorg = $regex.Matches($records)
 
 $ips = @()
 for($i=0; $i -lt $ipunorg.Count; $i++){
@@ -15,4 +16,5 @@ for($i=0; $i -lt $ipunorg.Count; $i++){
 $ipsoftens = $ips | Where-Object { $_.IP -ilike "10.*" }
 
 $counts = $ipsoftens | Group-Object IP
-$counts | Select-Object Count, Name
+return $counts | Select-Object Count, Name
+}
