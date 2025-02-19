@@ -11,5 +11,5 @@ $ITSInstructors = $allClasses | Where-Object { ($_."Class Code" -ilike "SYS*") -
 
 #$ITSInstructors | Sort-Object "Instructor" -Unique |  Format-Table "Instructor"
 
-$allClasses | Group-Object { $_.Instructor -in $ITSInstructors.Instructor } | Select-Object Count, Name `
+$allClasses | Group-Object "Instructor" | Select-Object Count, Name `
  | Sort-Object Count -Descending

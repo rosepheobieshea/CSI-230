@@ -52,18 +52,62 @@ while($operation){
         # TODO: Create a function called checkUser in Users that: 
         #              - Checks if user a exists. 
         #              - If user exists, returns true, else returns false
+        function checkUser($name){
+        $userlist = Get-LocalUser | Where-Object {$_.Name -ilike $name}
+            if($name -ne $null){
+                Write-Host "User $name exists"
+                $checkUserResult = $true
+                }
+                else{
+                    $checkUserResult = $false
+                    Write-Host "User $name does not exist yet"
+                }
+                return $checkUserResult
+                }
+
         # TODO: Check the given username with your new function.
         #              - If false is returned, continue with the rest of the function
         #              - If true is returned, do not continue and inform the user
         #
+        if($checkUserResult -eq $false){
+            Write-Host "Continue"
+            else{
+            throw "User already exists, exiting script..."
+            }
+            }
         # TODO: Create a function called checkPassword in String-Helper that:
         #              - Checks if the given string is at least 6 characters
         #              - Checks if the given string contains at least 1 special character, 1 number, and 1 letter
         #              - If the given string does not satisfy conditions, returns false
         #              - If the given string satisfy the conditions, returns true
+
+        $bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password)
+        $plainpassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr)
+        $specialChar = [regex] "[~`!@#\$%\^&\*\(\)_\+=-\]\[\\\{\}\|';:<>\?,\./]"
+        $numChar = [regex] "[0-9]+"
+        $letterChar = [regex] "[A-Za-z]+"
+ 
+        $goodpass = @()
+            if ($plainpassword.Length -ge 6) {
+            if ($plainpassword -match $specialChar){
+            if ($plainpassword -match $numChar){
+            if ($plainpassword -match $letterChar){
+                $goodpass = $true
+            }
+            }
+            }
+            }
+
+
         # TODO: Check the given password with your new function. 
         #              - If false is returned, do not continue and inform the user
         #              - If true is returned, continue with the rest of the function
+            if($goodpass -eq $true){
+                return
+            }
+                else{
+                Throw "That is not a good enough password, exiting script..."
+            }
 
         createAUser $name $password
 
