@@ -1,0 +1,11 @@
+ Write-Host "Hour: `n" | Out-String
+        $hour = Read-Host
+        $hour = $hour -replace "[a-zA-Z]"
+        Write-Host $hour
+
+        Write-Host "Minute: `n" | Out-String
+        $min = Read-Host
+        $min = $min -replace "[a-zA-Z]"
+        Write-Host $min
+
+"[0-9]{1,2}/:[0-9]{2}\s[AP]M"
