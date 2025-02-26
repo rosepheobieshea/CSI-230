@@ -55,14 +55,11 @@ while($operation){
         function checkUser($name){
         $userlist = Get-LocalUser | Where-Object {$_.Name -ilike $name}
             if($name -ne $null){
-                Write-Host "User $name exists"
-                $checkUserResult = $true
+                return $true
                 }
                 else{
-                    $checkUserResult = $false
-                    Write-Host "User $name does not exist yet"
+                    return $false
                 }
-                return $checkUserResult
                 }
 
         # TODO: Check the given username with your new function.
@@ -81,28 +78,28 @@ while($operation){
         #              - If the given string does not satisfy conditions, returns false
         #              - If the given string satisfy the conditions, returns true
 
+        function checkPassword($password){
         $bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password)
         $plainpassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr)
         $specialChar = [regex] "[~`!@#\$%\^&\*\(\)_\+=-\]\[\\\{\}\|';:<>\?,\./]"
         $numChar = [regex] "[0-9]+"
         $letterChar = [regex] "[A-Za-z]+"
  
-        $goodpass = @()
             if ($plainpassword.Length -ge 6) {
             if ($plainpassword -match $specialChar){
             if ($plainpassword -match $numChar){
             if ($plainpassword -match $letterChar){
-                $goodpass = $true
+                return $true
             }
             }
             }
             }
-
+}
 
         # TODO: Check the given password with your new function. 
         #              - If false is returned, do not continue and inform the user
         #              - If true is returned, continue with the rest of the function
-            if($goodpass -eq $true){
+            if(checkPassword -eq $true){
                 return
             }
                 else{
@@ -121,6 +118,7 @@ while($operation){
         $name = Read-Host -Prompt "Please enter the username for the user to be removed"
 
         # TODO: Check the given username with the checkUser function.
+        checkUser($name)
 
         removeAUser $name
 
@@ -135,6 +133,7 @@ while($operation){
         $name = Read-Host -Prompt "Please enter the username for the user to be enabled"
 
         # TODO: Check the given username with the checkUser function.
+        checkUser($name)
 
         enableAUser $name
 
@@ -148,6 +147,7 @@ while($operation){
         $name = Read-Host -Prompt "Please enter the username for the user to be disabled"
 
         # TODO: Check the given username with the checkUser function.
+        checkUser($name)
 
         disableAUser $name
 
@@ -160,9 +160,10 @@ while($operation){
         $name = Read-Host -Prompt "Please enter the username for the user logs"
 
         # TODO: Check the given username with the checkUser function.
+        checkUser($name)
 
         $userLogins = getLogInAndOffs 90
-        # TODO: Change the above line in a way that, the days 90 should be taken from the user
+        # TODO: Change the above line in a way that, the days 90 should be taken from the user ???????
 
         Write-Host ($userLogins | Where-Object { $_.User -ilike "*$name"} | Format-Table | Out-String)
     }
@@ -173,6 +174,7 @@ while($operation){
         $name = Read-Host -Prompt "Please enter the username for the user's failed login logs"
 
         # TODO: Check the given username with the checkUser function.
+        checkUser($name)
 
         $userLogins = getFailedLogins 90
         # TODO: Change the above line in a way that, the days 90 should be taken from the user
