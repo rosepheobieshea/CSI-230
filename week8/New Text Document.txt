@@ -1,0 +1,7 @@
+for($i=0; $i -lt $iocPattern.Count; $i++){
+    $term = $iocPattern[$i]
+    $rec = getLogs | Where-Object { $_.Page -ilike "*$term*" }
+    $new_table += $rec
+    }
+
+$new_table | Format-Table
