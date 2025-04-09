@@ -1,0 +1,6 @@
+To: rose.davis@mymail.champlain.edu
+Subject: Failed Logins
+2025-04-09T124311.546150-0400 pheobieVM lightdm pam_unix(lightdmauth) authentication failure; logname= uid=0 euid=0 tty=0 ruser= rhost=  user=pheobie
+2025-04-09T124314.738139-0400 pheobieVM lightdm pam_unix(lightdmauth) authentication failure; logname= uid=0 euid=0 tty=0 ruser= rhost=  user=pheobie
+2025-04-09T124319.596330-0400 pheobieVM lightdm pam_unix(lightdmauth) authentication failure; logname= uid=0 euid=0 tty=0 ruser= rhost=  user=pheobie
+2025-04-09T124322.618098-0400 pheobieVM lightdm pam_unix(lightdmauth) authentication failure; logname= uid=0 euid=0 tty=0 ruser= rhost=  user=pheobie
