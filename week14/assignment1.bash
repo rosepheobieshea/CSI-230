@@ -1,5 +1,5 @@
 #! /bin/bash
-clear
+#clear
 
 # filling courses.txt
 bash courses.bash
@@ -36,6 +36,14 @@ echo ""
 # Add function to the menu
 # Example input: JOYC 310
 # Example output: See the screenshots in canvas
+function courseLocation(){
+echo -n "Please Input a Course location (for example JOYC 310): "
+read courseLoc
+
+echo ""
+echo "All courses held at $courseLoc:"
+cat "$courseFile" | grep "$courseLoc" # | cut -f1
+}
 
 # TODO - 2
 # Make a function that displays all the courses that has availability
@@ -50,6 +58,7 @@ do
 	echo "Please select and option:"
 	echo "[1] Display courses of an instructor"
 	echo "[2] Display course count of instructors"
+	echo "[3] Display courses by location"
 	echo "[5] Exit"
 
 	read userInput
@@ -64,6 +73,9 @@ do
 
 	elif [[ "$userInput" == "2" ]]; then
 		courseCountofInsts
+
+	elif [[ "$userInput" == "3" ]]; then
+		courseLocation
 
 	# TODO - 3 Display a message, if an invalid input is given
 	fi
