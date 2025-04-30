@@ -14,4 +14,4 @@ xmlstarlet select --template --copy-of \
 
 # Processing HTML with sed
 # 1- Replacing every </tr> with a line break
-echo "$toolOutput" | sed 's/<\/td>/\n/g' | sed 's/<td>//g' > IOC.txt
+printf "%s" "$toolOutput" | sed 's/<\/td>/\n/g' | sed 's/<td>//g' > IOC.txt
