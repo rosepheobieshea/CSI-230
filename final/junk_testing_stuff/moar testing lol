@@ -1,0 +1,8 @@
+#!/bin/bash
+
+replen=$(wc -l < report.txt)
+
+for (( i=1; i<=${replen}; i++));
+do
+    echo $i
+done

@@ -1,0 +1,16 @@
+<html>
+<body>
+<br>
+Logs w/ IOC Indicators
+</br>
+<table>
+<tbody>
+<tr>
+<th>IP Addr</th>
+<th>Date/Time</th>
+<th>Access</th>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
